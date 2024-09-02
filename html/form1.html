@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form 1</title>
+    <link rel="stylesheet" href="../css/mystyles.css">
+  </head>
+  <body>
+    <form action="form2.html" method="post">
+      <label for="progress">Progress: </label>
+      <progress id="progress" value="0" max="2"></progress>
+      <fieldset>
+        <legend>Register new user</legend>
+        <label for="username">Username: </label>
+        <input type="text" id="username" name="username" placeholder="enter a new username">
+        <label for="password">Password: </label>
+        <input type="password" name="password" id="password" placeholder="6 digits or more">
+      </fieldset>
+      <fieldset>
+        <legend>Personal details</legend>
+        <label for="name">Name: </label><input type="text" id="name" placeholder="steet number and name">
+        <label for="address">Address: </label><input type="text" id="address" placeholder="street number and name">
+        <label for="suburb">Suburb: </label><input type="text" id="suburb" placeholder="Suburb">
+        <label for="city">City: </label><input type="text" id="city" placeholder="City">
+        <label for="country">Country: </label>
+        <select name="country" id="country">
+          <option value="">Select a country</option>
+        </select>
+        <label for="state">Select a state</label><select name="state" id="state">
+          <option value="">Select a state</option>
+        </select>
+        <label for="postcode">Postcode: </label><input type="text" id="postcode" placeholder="0000">
+        <label for="email">Email: </label><input type="email" name="email" id="email" placeholder="me@example.com">
+        <label for="phone">Phone: </label><input type="tel" name="phone" id="phone" placeholder="(00)-000-0000">
+        <label for="website">Website: </label><input type="url" name="website" id="website" placeholder="http://www.example.com">
+        <label for="age">Age: </label><input type="number" name="age" id="age" min="0" max="120" step="1" placeholder="00">
+      </fieldset>
+      <fieldset>
+        <legend>Spam check</legend>
+        <p><label for="colour">What colour is black? (Choose a colour).</label><input type="color" name="colour" id="colour" value="#ffffff"></p>
+      </fieldset>
+      <fieldset>
+        <button type="submit">Continue</button>
+      </fieldset>
+    </form>
+  </body>
+</html>
