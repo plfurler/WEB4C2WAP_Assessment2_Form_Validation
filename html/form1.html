@@ -7,34 +7,44 @@
     <link rel="stylesheet" href="../css/mystyles.css">
   </head>
   <body>
-    <form action="form2.html" method="post">
+    <form id="form1" action="form2.html" method="post">
       <label for="progress">Progress: </label>
       <progress id="progress" value="0" max="2"></progress>
       <fieldset>
         <legend>Register new user</legend>
         <label for="username">Username: </label>
-        <input type="text" id="username" name="username" placeholder="enter a new username">
+        <input type="text" id="username" name="username" placeholder="enter a new username" pattern="[a-zA-Z]{8,12}" title="Please enter between 8 and 12 letters. Upper or lowercase." required>
         <label for="password">Password: </label>
-        <input type="password" name="password" id="password" placeholder="6 digits or more">
+        <input type="password" name="password" id="password" placeholder="6 digits or more" pattern="[0-9]{6,}" title="Please enter 6 digits or more" required>
       </fieldset>
       <fieldset>
         <legend>Personal details</legend>
-        <label for="name">Name: </label><input type="text" id="name" placeholder="steet number and name">
-        <label for="address">Address: </label><input type="text" id="address" placeholder="street number and name">
-        <label for="suburb">Suburb: </label><input type="text" id="suburb" placeholder="Suburb">
-        <label for="city">City: </label><input type="text" id="city" placeholder="City">
+        <label for="name">Name: </label><input type="text" id="name" pattern="^([A-Z][a-zA-Z'’-]*)( [A-Z][a-zA-Z'’-]*){0,2}$" title="Please enter up to 80 characters with up to three words. Each word should start with a capital letter and may include apostrophes or hyphens." placeholder="First and last name" required>
+        <label for="address">Address: </label>
+        <input type="text" id="address" pattern="^[a-zA-Z0-9\s./-]{1,100}$" title="Please enter up to 100 alphanumeric characters. Special characters allowed: spaces, periods, hyphens, and slashes." placeholder="street number and name" required>
+        <label for="suburb">Suburb: </label>
+        <input type="text" id="suburb" pattern="^[A-Z][a-zA-Z]{0,49}$" title="The input must start with an uppercase letter and contain only alphabetic characters, with a maximum length of 50." placeholder="Suburb" required>
+        <label for="city">City: </label>
+        <input type="text" id="city" pattern="^[A-Z][a-zA-Z]+([ '-][A-Za-z]+)*$" maxlength="50" title="Please enter a name starting with a capital letter. Special characters allowed: space, hyphen, and apostrophe. Maximum of 50 characters." placeholder="City" required>
         <label for="country">Country: </label>
-        <select name="country" id="country">
+        <select name="country" id="country" required>
           <option value="">Select a country</option>
         </select>
-        <label for="state">Select a state</label><select name="state" id="state">
+        <label for="state">Select a state</label>
+        <select name="state" id="state" required>
           <option value="">Select a state</option>
         </select>
-        <label for="postcode">Postcode: </label><input type="text" id="postcode" placeholder="0000">
-        <label for="email">Email: </label><input type="email" name="email" id="email" placeholder="me@example.com">
-        <label for="phone">Phone: </label><input type="tel" name="phone" id="phone" placeholder="(00)-000-0000">
-        <label for="website">Website: </label><input type="url" name="website" id="website" placeholder="http://www.example.com">
-        <label for="age">Age: </label><input type="number" name="age" id="age" min="0" max="120" step="1" placeholder="00">
+        <label for="postcode">Postcode: </label>
+        <input type="text" id="postcode" pattern="^[0-9]{4}$" title="Please enter exactly 4 digits." placeholder="0000" required>
+        <label for="email">Email: </label>
+        <input type="email" name="email" id="email" pattern="[^@]+@[^@]+\.[a-zA-Z]{2,6}" title="A valid email address." placeholder="me@example.com" required>
+        <label for="phone">Phone: </label>
+        <input type="tel" name="phone" id="phone" pattern="^\(\d{2}\)-\d{4}-\d{4}$" title="Please enter the phone number in the format (##)-####-####, where # is a digit." placeholder="(00)-000-0000" required>
+        <label for="website">Website: </label>
+        <input type="url" name="website" id="website" pattern="^http://www\.[a-zA-Z0-9-]+\.(com|net|org)$
+        " title="Please enter a URL in the format http://www.example.com, .net, or .org" placeholder="http://www.example.com" required>
+        <label for="age">Age: </label>
+        <input type="text" name="age" id="age" pattern="^(?:[0-9]|[1-9][0-9])$" title="Please enter a number between 0 and 99." placeholder="00" required>
       </fieldset>
       <fieldset>
         <legend>Spam check</legend>
