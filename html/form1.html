@@ -19,8 +19,11 @@
       </fieldset>
       <fieldset>
         <legend>Personal details</legend>
-        <label for="name">Name: </label><input type="text" id="name" pattern="^([A-Z][a-zA-Z'’-]*)( [A-Z][a-zA-Z'’-]*){0,2}$" title="Please enter up to 80 characters with up to three words. Each word should start with a capital letter and may include apostrophes or hyphens." placeholder="First and last name" required>
+        <label for="name">Name: </label>
+        <input type="text" id="name" pattern="^([A-Z][a-zA-Z]*(['-][A-Z][a-zA-Z]*)?\s?){1,3}$" title="Please enter up to 80 characters with up to three words. Each word should start with a capital letter and may include apostrophes or hyphens." placeholder="First and last name" required>
         <label for="address">Address: </label>
+        <!-- Explain address pattern -->
+        <!-- this regex pattern ensures that the address consists of 1 to 100 characters, which can include letters, digits, spaces, periods, forward slashes, and hyphens. -->
         <input type="text" id="address" pattern="^[a-zA-Z0-9\s./-]{1,100}$" title="Please enter up to 100 alphanumeric characters. Special characters allowed: spaces, periods, hyphens, and slashes." placeholder="street number and name" required>
         <label for="suburb">Suburb: </label>
         <input type="text" id="suburb" pattern="^[A-Z][a-zA-Z]{0,49}$" title="The input must start with an uppercase letter and contain only alphabetic characters, with a maximum length of 50." placeholder="Suburb" required>
@@ -39,6 +42,8 @@
         <label for="email">Email: </label>
         <input type="email" name="email" id="email" pattern="[^@]+@[^@]+\.[a-zA-Z]{2,6}" title="A valid email address." placeholder="me@example.com" required>
         <label for="phone">Phone: </label>
+        <!-- Explain phone pattern -->
+        <!-- this regex pattern ensures that the phone number follows the format (xx)-xxxx-xxxx, where x is any digit from 0 to 9. -->
         <input type="tel" name="phone" id="phone" pattern="^\(\d{2}\)-\d{4}-\d{4}$" title="Please enter the phone number in the format (##)-####-####, where # is a digit." placeholder="(00)-000-0000" required>
         <label for="website">Website: </label>
         <input type="url" name="website" id="website" pattern="^http://www\.[a-zA-Z0-9-]+\.(com|net|org)$
