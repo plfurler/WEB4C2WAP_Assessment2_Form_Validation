@@ -51,8 +51,10 @@
         <span id="cityError" style="display: none;"></span>
 
         <label for="country">Country: </label>
-        <select name="country" id="country" required>
+        <select name="country" id="country" onchange="changeState()" required>
           <option value="">Select a country</option>
+          <option value="AU">Australia</option>
+          <option value="NZ">New Zealand</option>
         </select>
 
         <label for="state">Select a state</label>
