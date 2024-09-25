@@ -1,58 +1,117 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Form 1</title>
-    <link rel="stylesheet" href="../css/mystyles.css">
+    <link rel="stylesheet" href="../css/mystyles.css" />
     <script src="../js/validate.js"></script>
   </head>
-  <body>
-    <form id="form1" action="form2.html" method="post" novalidate autocomplete="off">
+
+  <body onload="retrieveData()">
+    <form
+      id="form1"
+      action="form2.html"
+      method="post"
+      novalidate
+      autocomplete="off"
+    >
       <label for="progress">Progress: </label>
       <progress id="progress" value="0" max="2"></progress>
 
       <fieldset>
         <legend>Register new user</legend>
-        
+
         <label for="username">Username: </label>
-        <input type="text" id="username" name="username" placeholder="enter a new username" pattern="[a-zA-Z]{8,12}" title="Please enter between 8 and 12 letters. Upper or lowercase." required autofocus onblur="return validateErrors('username', 'usernameError')">
+        <input
+          type="text"
+          id="username"
+          name="username"
+          placeholder="enter a new username"
+          pattern="[a-zA-Z]{8,12}"
+          title="Please enter between 8 and 12 letters. Upper or lowercase."
+          required
+          autofocus
+          onblur="return validateErrors('username', 'usernameError')"
+        />
         <script>
-          if (!("autofocus" in document.createElement("input"))) { document.getElementById("username").focus();
+          if (!("autofocus" in document.createElement("input"))) {
+            document.getElementById("username").focus();
           }
-          </script>
-        <span id="usernameError" style="display: none;"></span>
+        </script>
+        <span id="usernameError" style="display: none"></span>
 
         <label for="password">Password: </label>
-        <input type="password" name="password" id="password" placeholder="at least eight symbols containing at least one number, one lower, and one upper letter" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="at least eight symbols containing at least one number, one lower, and one uppercase letter" required onblur="return validateErrors('password', 'passwordError')">
-        <span id="passwordError" style="display: none;"></span>
-
+        <input
+          type="password"
+          name="password"
+          id="password"
+          placeholder="at least eight symbols containing at least one number, one lower, and one upper letter"
+          pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
+          title="at least eight symbols containing at least one number, one lower, and one uppercase letter"
+          required
+          onblur="return validateErrors('password', 'passwordError')"
+        />
+        <span id="passwordError" style="display: none"></span>
       </fieldset>
 
       <fieldset>
         <legend>Personal details</legend>
 
         <label for="name">Name: </label>
-        <input type="text" id="name" pattern="^([A-Z][a-zA-Z]*(['-][A-Z][a-zA-Z]*)?\s?){1,3}$" title="Please enter up to 80 characters with up to three words. Each word should start with a capital letter and may include apostrophes or hyphens." placeholder="First and last name" required onblur="return validateErrors('name', 'nameError')">
-        <span id="nameError" style="display: none;"></span>
+        <input
+          type="text"
+          id="name"
+          pattern="^([A-Z][a-zA-Z]*(['-][A-Z][a-zA-Z]*)?\s?){1,3}$"
+          title="Please enter up to 80 characters with up to three words. Each word should start with a capital letter and may include apostrophes or hyphens."
+          placeholder="First and last name"
+          required
+          onblur="return validateErrors('name', 'nameError')"
+        />
+        <span id="nameError" style="display: none"></span>
 
         <label for="address">Address: </label>
         <!-- Explain address pattern -->
         <!-- this regex pattern ensures that the address consists of 1 to 100 characters, which can include letters, digits, spaces, periods, forward slashes, and hyphens. -->
-        <input type="text" id="address" pattern="^[a-zA-Z0-9\s./-]{1,100}$" title="Please enter up to 100 alphanumeric characters. Special characters allowed: spaces, periods, hyphens, and slashes." placeholder="street number and name" required onblur="return validateErrors('address', 'addressError')">
-        <span id="addressError" style="display: none;"></span>
+        <input
+          type="text"
+          id="address"
+          pattern="^[a-zA-Z0-9\s./-]{1,100}$"
+          title="Please enter up to 100 alphanumeric characters. Special characters allowed: spaces, periods, hyphens, and slashes."
+          placeholder="street number and name"
+          required
+          onblur="return validateErrors('address', 'addressError')"
+        />
+        <span id="addressError" style="display: none"></span>
 
         <label for="suburb">Suburb: </label>
-        <input type="text" id="suburb" pattern="^[A-Z][a-zA-Z ']{0,49}$" title="The input must start with an uppercase letter and contain only alphabetic characters, with a maximum length of 50." placeholder="Suburb" required onblur="return validateErrors('suburb', 'suburbError')">
-        <span id="suburbError" style="display: none;"></span>
+        <input
+          type="text"
+          id="suburb"
+          pattern="^[A-Z][a-zA-Z ']{0,49}$"
+          title="The input must start with an uppercase letter and contain only alphabetic characters, with a maximum length of 50."
+          placeholder="Suburb"
+          required
+          onblur="return validateErrors('suburb', 'suburbError')"
+        />
+        <span id="suburbError" style="display: none"></span>
 
         <label for="city">City: </label>
-        <input type="text" id="city" pattern="^[A-Z][a-zA-Z]+([ '-][A-Za-z]+)*$" maxlength="50" title="Please enter a name starting with a capital letter. Special characters allowed: space, hyphen, and apostrophe. Maximum of 50 characters." placeholder="City" required onblur="return validateErrors('city', 'cityError')">
-        <span id="cityError" style="display: none;"></span>
+        <input
+          type="text"
+          id="city"
+          pattern="^[A-Z][a-zA-Z]+([ '-][A-Za-z]+)*$"
+          maxlength="50"
+          title="Please enter a name starting with a capital letter. Special characters allowed: space, hyphen, and apostrophe. Maximum of 50 characters."
+          placeholder="City"
+          required
+          onblur="return validateErrors('city', 'cityError')"
+        />
+        <span id="cityError" style="display: none"></span>
 
         <label for="country">Country: </label>
         <select name="country" id="country" onchange="changeState();" required>
-          <option value="">Select a country</option>
+          <option value="">select a country</option>
           <option value="AU">Australia</option>
           <option value="NZ">New Zealand</option>
         </select>
@@ -63,49 +122,99 @@
         </select>
 
         <label for="postcode">Postcode: </label>
-        <input type="text" id="postcode" pattern="^[0-9]{4}$" title="Please enter exactly 4 digits. " placeholder="0000" required onblur="return validatePostcode();">
-        <span id="postcodeError" style="display: none;"></span>
+        <input
+          type="text"
+          id="postcode"
+          pattern="^[0-9]{4}$"
+          title="Please enter exactly 4 digits. "
+          placeholder="0000"
+          required
+          onblur="return validatePostcode();"
+        />
+        <span id="postcodeError" style="display: none"></span>
 
         <label for="email">Email: </label>
-        <input type="email" name="email" id="email" pattern="[^@]+@[^@]+\.[a-zA-Z]{2,6}" title="A valid email address." placeholder="me@example.com" required onblur="return validateErrors('email', 'emailError')">
-        <span id="emailError" style="display: none;"></span>
+        <input
+          type="email"
+          name="email"
+          id="email"
+          pattern="[^@]+@[^@]+\.[a-zA-Z]{2,6}"
+          title="A valid email address."
+          placeholder="me@example.com"
+          required
+          onblur="return validateErrors('email', 'emailError')"
+        />
+        <span id="emailError" style="display: none"></span>
 
         <label for="phone">Phone: </label>
         <!-- Explain phone pattern -->
         <!-- this regex pattern ensures that the phone number follows the format (xx)-xxxx-xxxx, where x is any digit from 0 to 9. -->
-        <input type="tel" name="phone" id="phone" pattern="^\(\d{2}\)-\d{4}-\d{4}$" title="Please enter the phone number in the format (##)-####-####, where # is a digit." placeholder="(00)-000-0000" required onblur="return validateErrors('phone', 'phoneError')">
-        <span id="phoneError" style="display: none;"></span>
+        <input
+          type="tel"
+          name="phone"
+          id="phone"
+          pattern="^\(\d{2}\)-\d{4}-\d{4}$"
+          title="Please enter the phone number in the format (##)-####-####, where # is a digit."
+          placeholder="(00)-000-0000"
+          required
+          onblur="return validateErrors('phone', 'phoneError')"
+        />
+        <span id="phoneError" style="display: none"></span>
 
         <label for="website">Website: </label>
-        <input type="url" name="website" id="website" pattern="^http:\/\/www\.[a-zA-Z0-9-]+\.(com|net|org)$" title="Please enter a URL in the format http://www.example.com, .net, or .org" placeholder="http://www.example.com" required onblur="return validateErrors('website', 'websiteError')">
-        <span id="websiteError" style="display: none;"></span>
+        <input
+          type="url"
+          name="website"
+          id="website"
+          pattern="^http:\/\/www\.[a-zA-Z0-9-]+\.(com|net|org)$"
+          title="Please enter a URL in the format http://www.example.com, .net, or .org"
+          placeholder="http://www.example.com"
+          required
+          onblur="return validateErrors('website', 'websiteError')"
+        />
+        <span id="websiteError" style="display: none"></span>
 
         <label for="age">Age: </label>
-        <input type="text" name="age" id="age" pattern="^(?:[0-9]|[1-9][0-9])$" title="Please enter a number between 0 and 99." placeholder="00" required onblur="return validateErrors('age', 'ageError')">
-        <span id="ageError" style="display: none;"></span>
-
+        <input
+          type="text"
+          name="age"
+          id="age"
+          pattern="^(?:[0-9]|[1-9][0-9])$"
+          title="Please enter a number between 0 and 99."
+          placeholder="00"
+          required
+          onblur="return validateErrors('age', 'ageError')"
+        />
+        <span id="ageError" style="display: none"></span>
       </fieldset>
 
       <fieldset>
         <legend>Spam check</legend>
 
-        <p><label for="colour">What colour is black? (Choose a colour).</label><input type="color" name="colour" id="colour" value="#ffffff"></p>
-
+        <p>
+          <label for="colour">What colour is black? (Choose a colour).</label
+          ><input type="color" name="colour" id="colour" value="#ffffff" />
+        </p>
       </fieldset>
 
       <fieldset>
-
         <button type="submit" onclick="return validate()">Continue</button>
-
       </fieldset>
-      
     </form>
     <script>
-      // Get the 'country' select element and set the value of the first option to an empty string
-      document.getElementById('country').options[0].value = '0';
-  
-      // Get the 'state' select element and set the value of the first option to an empty string
-      document.getElementById('state').options[0].value = '0';
+      // to keep the variable scope local, I am using a self invoking function
+      (function () {
+        let countryFirstOpt = document.getElementById("country").options[0];
+        let stateFirstOpt = document.getElementById("state").options[0];
+
+        if (countryFirstOpt.value === "") {
+          countryFirstOpt.value = "0";
+        }
+
+        if (stateFirstOpt.value === "") {
+          stateFirstOpt.value = "0";
+        }
+      })();
     </script>
   </body>
 </html>

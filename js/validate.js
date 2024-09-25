@@ -1,18 +1,14 @@
+// Form Validation
+
 function validate() {
-  // Gets all of the elements in the form with id="form1"
-  // You will need to change this to match your form's id
   var elements = document.getElementById("form1").elements;
 
-  // Loops through all of the elements in the form
   for (var i = 0, element; (element = elements[i++]); ) {
-    // Checks if the element in the form is either <input> or <select>
-    // and if the background color is not green (RGB value used here)
     if (
       (element == "[object HTMLInputElement]" ||
         element == "[object HTMLSelectElement]") &&
       element.style.backgroundColor != "rgb(204, 255, 204)"
     ) {
-      // If input is not a color picker or submit button
       if (element.type != "color" && element.type != "submit") {
         alert("Please enter data for any fields that are not green");
         return false;
@@ -20,50 +16,27 @@ function validate() {
     }
   }
 
-  // To test the color picker (Hex value used here)
-  // You will need to edit the id below to match yours
-  if (
-    document.getElementById("colour").value !=
-    "#000000"
-  ) {
-    alert("Please select a colour from the colour picker");
+  if (document.getElementById("colour").value != "#000000") {
+    alert("Please select the correct colour for black from the colour picker");
     document.getElementById("colour").focus();
     return false;
   }
 }
 
 function validateErrors(formField, errorField) {
-  // Create a variable for the form field
   theField = document.getElementById(formField);
-
-  // Create a variable for the error field
   theError = document.getElementById(errorField);
-
-  // Create a new pattern by reading in pattern from HTML and adding delimiters
   var thePattern = new RegExp("^" + theField.pattern + "$");
 
-  // Test data in field against regex pattern from HTML
   if (!thePattern.test(theField.value)) {
-    // Set field background to red
     theField.style.background = "#FF9999";
-
-    // Display the <span> containing the error message
     theError.style.display = "block";
-
-    // Display the error message by reading the HTML title and writing it to the <span>
     theError.innerHTML = theField.title;
-
-    // Set focus to field
     theField.focus();
-
     return false;
   } else {
-    // Set field background to green
     theField.style.background = "#CCFFCC";
-
-    // Remove error message
     theError.style.display = "none";
-
     return true;
   }
 }
@@ -84,11 +57,11 @@ function validatePostcode() {
       break;
     case "VIC":
       postcodeRegExp = /^[3][0-9]{3}$/;
-      errorMessage = "Postcode should start with 3 or 4 for VIC.";
+      errorMessage = "Postcode should start with 3 for VIC.";
       break;
     case "QLD":
       postcodeRegExp = /^[4][0-9]{3}$/;
-      errorMessage = "Postcode should start with 4 to 9 for QLD.";
+      errorMessage = "Postcode should start with 4 for QLD.";
       break;
     case "SA":
       postcodeRegExp = /^[5][0-9]{3}$/;
@@ -115,13 +88,11 @@ function validatePostcode() {
     postcodeError.style.display = "block";
     postcodeError.textContent = postcodeInput.title;
     postcodeError.textContent += errorMessage;
-    // Set field background to red
     postcodeInput.style.backgroundColor = "#FF9999";
     postcodeInput.focus();
     return false;
   } else {
     postcodeError.style.display = "none";
-    // Set field background to green
     postcodeInput.style.backgroundColor = "#CCFFCC";
     return true;
   }
@@ -152,6 +123,7 @@ function changeState() {
       "NT"
     );
   }
+
   // if country selected is New Zealand
   // populate state select list with New Zealand regions
   else if (country === "NZ") {
@@ -175,6 +147,7 @@ function changeState() {
     state.options[state.options.length] = new Option("Taranaki", "TK");
     state.options[state.options.length] = new Option("Southland", "SL");
   }
+
   // if no country selected populate state select list
   // with one option that tells user to select country first
   else {
@@ -185,7 +158,7 @@ function changeState() {
     );
   }
 
-  // Change background color of country select element
+  // check if country select list has selected a country
   if (document.getElementById("country").value == "0") {
     document.getElementById("country").style.background = "#FF9999";
   } else {
@@ -193,13 +166,94 @@ function changeState() {
   }
 }
 
-// Call this function using an onchange event on your state select
-// Add the same if statement into the end of function changeState()
-// and change the id from your state select to your country select
 function stateColours() {
   if (document.getElementById("state").value == "0") {
     document.getElementById("state").style.background = "#FF9999";
   } else {
     document.getElementById("state").style.background = "#CCFFCC";
   }
+}
+
+// Local Storage
+var myInterval = setInterval(saveData, 5000);
+
+function saveData() {
+  let usernameValue = document.querySelector("#username").value;
+  let nameValue = document.querySelector("#name").value;
+  let addressValue = document.querySelector("#address").value;
+  let suburbValue = document.querySelector("#suburb").value;
+  let cityValue = document.querySelector("#city").value;
+  let countryValue = document.querySelector("#country").value;
+  let stateValue = document.querySelector("#state").value;
+  let postcodeValue = document.querySelector("#postcode").value;
+  let emailValue = document.querySelector("#email").value;
+  let phoneValue = document.querySelector("#phone").value;
+  let websiteValue = document.querySelector("#website").value;
+  let ageValue = document.querySelector("#age").value;
+  let colourValue = document.querySelector("#colour").value;
+
+  localStorage.setItem("username", usernameValue);
+  localStorage.setItem("name", nameValue);
+  localStorage.setItem("address", addressValue);
+  localStorage.setItem("suburb", suburbValue);
+  localStorage.setItem("city", cityValue);
+  localStorage.setItem("country", countryValue);
+  localStorage.setItem("state", stateValue);
+  localStorage.setItem("postcode", postcodeValue);
+  localStorage.setItem("email", emailValue);
+  localStorage.setItem("phone", phoneValue);
+  localStorage.setItem("website", websiteValue);
+  localStorage.setItem("age", ageValue);
+  localStorage.setItem("colour", colourValue);
+}
+
+function retrieveData() {
+  let usernameValue = localStorage.getItem("username");
+  let nameValue = localStorage.getItem("name");
+  let addressValue = localStorage.getItem("address");
+  let suburbValue = localStorage.getItem("suburb");
+  let cityValue = localStorage.getItem("city");
+  let countryValue = localStorage.getItem("country");
+  let stateValue = localStorage.getItem("state");
+  let postcodeValue = localStorage.getItem("postcode");
+  let emailValue = localStorage.getItem("email");
+  let phoneValue = localStorage.getItem("phone");
+  let websiteValue = localStorage.getItem("website");
+  let ageValue = localStorage.getItem("age");
+  let colourValue = localStorage.getItem("colour");
+
+  document.querySelector("#username").value = usernameValue || "";
+  document.querySelector("#name").value = nameValue || "";
+  document.querySelector("#address").value = addressValue || "";
+  document.querySelector("#suburb").value = suburbValue || "";
+  document.querySelector("#city").value = cityValue || "";
+  document.querySelector("#country").value = countryValue || "";
+  document.querySelector("#postcode").value = postcodeValue || "";
+  document.querySelector("#email").value = emailValue || "";
+  document.querySelector("#phone").value = phoneValue || "";
+  document.querySelector("#website").value = websiteValue || "";
+  document.querySelector("#age").value = ageValue || "";
+  document.querySelector("#colour").value = colourValue || "#ffffff";
+
+  if (usernameValue) validateErrors("username", "usernameError");
+  if (nameValue) validateErrors("name", "nameError");
+  if (addressValue) validateErrors("address", "addressError");
+  if (suburbValue) validateErrors("suburb", "suburbError");
+  if (cityValue) validateErrors("city", "cityError");
+  if (countryValue) {
+    document.querySelector("#country").value = countryValue;
+
+    changeState();
+
+    if (stateValue) {
+      document.querySelector("#state").value = stateValue;
+    }
+
+    stateColours();
+  }
+  if (postcodeValue) validatePostcode();
+  if (emailValue) validateErrors("email", "emailError");
+  if (phoneValue) validateErrors("phone", "phoneError");
+  if (websiteValue) validateErrors("website", "websiteError");
+  if (ageValue) validateErrors("age", "ageError");
 }
