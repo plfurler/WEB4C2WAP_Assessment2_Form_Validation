@@ -8,7 +8,7 @@
     <script src="../js/validate.js"></script>
   </head>
   <body>
-    <form id="form1" action="form2.html" method="post" novalidate>
+    <form id="form1" action="form2.html" method="post" novalidate autocomplete="off">
       <label for="progress">Progress: </label>
       <progress id="progress" value="0" max="2"></progress>
 
@@ -51,15 +51,15 @@
         <span id="cityError" style="display: none;"></span>
 
         <label for="country">Country: </label>
-        <select name="country" id="country" onchange="changeState()" required>
-          <option value="0">Select a country</option>
+        <select name="country" id="country" onchange="changeState();" required>
+          <option value="">Select a country</option>
           <option value="AU">Australia</option>
           <option value="NZ">New Zealand</option>
         </select>
 
         <label for="state">Select a state</label>
         <select name="state" id="state" required onchange="stateColours()">
-          <option value="0">Select a state</option>
+          <option value="">Select a state</option>
         </select>
 
         <label for="postcode">Postcode: </label>
@@ -95,10 +95,17 @@
 
       <fieldset>
 
-        <button type="submit">Continue</button>
+        <button type="submit" onclick="return validate()">Continue</button>
 
       </fieldset>
       
     </form>
+    <script>
+      // Get the 'country' select element and set the value of the first option to an empty string
+      document.getElementById('country').options[0].value = '0';
+  
+      // Get the 'state' select element and set the value of the first option to an empty string
+      document.getElementById('state').options[0].value = '0';
+    </script>
   </body>
 </html>

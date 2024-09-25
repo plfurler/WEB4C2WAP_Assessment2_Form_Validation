@@ -1,3 +1,37 @@
+function validate() {
+  // Gets all of the elements in the form with id="form1"
+  // You will need to change this to match your form's id
+  var elements = document.getElementById("form1").elements;
+
+  // Loops through all of the elements in the form
+  for (var i = 0, element; (element = elements[i++]); ) {
+    // Checks if the element in the form is either <input> or <select>
+    // and if the background color is not green (RGB value used here)
+    if (
+      (element == "[object HTMLInputElement]" ||
+        element == "[object HTMLSelectElement]") &&
+      element.style.backgroundColor != "rgb(204, 255, 204)"
+    ) {
+      // If input is not a color picker or submit button
+      if (element.type != "color" && element.type != "submit") {
+        alert("Please enter data for any fields that are not green");
+        return false;
+      }
+    }
+  }
+
+  // To test the color picker (Hex value used here)
+  // You will need to edit the id below to match yours
+  if (
+    document.getElementById("colour").value !=
+    "#000000"
+  ) {
+    alert("Please select a colour from the colour picker");
+    document.getElementById("colour").focus();
+    return false;
+  }
+}
+
 function validateErrors(formField, errorField) {
   // Create a variable for the form field
   theField = document.getElementById(formField);
@@ -30,6 +64,65 @@ function validateErrors(formField, errorField) {
     // Remove error message
     theError.style.display = "none";
 
+    return true;
+  }
+}
+
+function validatePostcode() {
+  var state = document.getElementById("state").value;
+  var postcode = document.getElementById("postcode").value;
+  var postcodeError = document.getElementById("postcodeError");
+  var postcodeInput = document.getElementById("postcode");
+  var postcodeRegExp;
+  var errorMessage = "";
+
+  switch (state) {
+    case "NSW":
+    case "ACT":
+      postcodeRegExp = /^[2][0-9]{3}$/;
+      errorMessage = "Postcode should start with 2 for NSW and ACT.";
+      break;
+    case "VIC":
+      postcodeRegExp = /^[3][0-9]{3}$/;
+      errorMessage = "Postcode should start with 3 or 4 for VIC.";
+      break;
+    case "QLD":
+      postcodeRegExp = /^[4][0-9]{3}$/;
+      errorMessage = "Postcode should start with 4 to 9 for QLD.";
+      break;
+    case "SA":
+      postcodeRegExp = /^[5][0-9]{3}$/;
+      errorMessage = "Postcode should start with 5 for SA.";
+      break;
+    case "WA":
+      postcodeRegExp = /^[6][0-9]{3}$/;
+      errorMessage = "Postcode should start with 6 for WA.";
+      break;
+    case "TAS":
+      postcodeRegExp = /^[7][0-9]{3}$/;
+      errorMessage = "Postcode should start with 7 for TAS.";
+      break;
+    case "NT":
+      postcodeRegExp = /^[0][0-9]{3}$/;
+      errorMessage = "Postcode should start with 0 for NT.";
+      break;
+    default:
+      postcodeRegExp = /^[0-9]{4}$/;
+      errorMessage = "Please enter a valid postcode.";
+  }
+
+  if (!postcodeRegExp.test(postcode)) {
+    postcodeError.style.display = "block";
+    postcodeError.textContent = postcodeInput.title;
+    postcodeError.textContent += errorMessage;
+    // Set field background to red
+    postcodeInput.style.backgroundColor = "#FF9999";
+    postcodeInput.focus();
+    return false;
+  } else {
+    postcodeError.style.display = "none";
+    // Set field background to green
+    postcodeInput.style.backgroundColor = "#CCFFCC";
     return true;
   }
 }
@@ -108,64 +201,5 @@ function stateColours() {
     document.getElementById("state").style.background = "#FF9999";
   } else {
     document.getElementById("state").style.background = "#CCFFCC";
-  }
-}
-
-function validatePostcode() {
-  var state = document.getElementById("state").value;
-  var postcode = document.getElementById("postcode").value;
-  var postcodeError = document.getElementById("postcodeError");
-  var postcodeInput = document.getElementById("postcode");
-  var postcodeRegExp;
-  var errorMessage = "";
-
-  switch (state) {
-    case "NSW":
-    case "ACT":
-      postcodeRegExp = /^[2][0-9]{3}$/;
-      errorMessage = "Postcode should start with 2 for NSW and ACT.";
-      break;
-    case "VIC":
-      postcodeRegExp = /^[3][0-9]{3}$/;
-      errorMessage = "Postcode should start with 3 or 4 for VIC.";
-      break;
-    case "QLD":
-      postcodeRegExp = /^[4][0-9]{3}$/;
-      errorMessage = "Postcode should start with 4 to 9 for QLD.";
-      break;
-    case "SA":
-      postcodeRegExp = /^[5][0-9]{3}$/;
-      errorMessage = "Postcode should start with 5 for SA.";
-      break;
-    case "WA":
-      postcodeRegExp = /^[6][0-9]{3}$/;
-      errorMessage = "Postcode should start with 6 for WA.";
-      break;
-    case "TAS":
-      postcodeRegExp = /^[7][0-9]{3}$/;
-      errorMessage = "Postcode should start with 7 for TAS.";
-      break;
-    case "NT":
-      postcodeRegExp = /^[0][0-9]{3}$/;
-      errorMessage = "Postcode should start with 0 for NT.";
-      break;
-    default:
-      postcodeRegExp = /^[0-9]{4}$/;
-      errorMessage = "Please enter a valid postcode.";
-  }
-
-  if (!postcodeRegExp.test(postcode)) {
-    postcodeError.style.display = "block";
-    postcodeError.textContent = postcodeInput.title;
-    postcodeError.textContent += errorMessage;
-    // Set field background to red
-    postcodeInput.style.backgroundColor = "#FF9999";
-    postcodeInput.focus();
-    return false;
-  } else {
-    postcodeError.style.display = "none";
-    // Set field background to green
-    postcodeInput.style.backgroundColor = "#CCFFCC"; 
-    return true;
   }
 }
