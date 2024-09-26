@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Form 2</title>
+    <link rel="stylesheet" href="../css/datepickr.css">
     <link rel="stylesheet" href="../css/mystyles.css">
 </head>
 <body>
@@ -12,31 +13,48 @@
         <progress id="progress" value="1" max="2"></progress>
         <fieldset>
             <legend>Enter Tip Details</legend>
+
             <label for="incidentDateTime">Date/Time of Incident:</label>
             <input type="text" name="incidentDateTime" id="incidentDateTime" placeholder="YYYY-MM-DD">
+
             <label for="tipDetails">Tip Details: </label>
             <textarea name="tipDetails" id="tipDetails" cols="15" rows="5" placeholder="enter the details of the tip"></textarea>
+
             <label for="file">Attach supporting file:</label>
             <input type="file" name="file" id="file">
+
             <label for="urgency">Urgency: </label>
             <input type="range" name="urgency" id="urgency" min="0" max="10" value="5">
             <input type="text" placeholder="10 is most urgent" disabled>
+
         </fieldset>
+
         <fieldset>
             <legend>Communication Preferences</legend>
+
             <label for="contact">May we contact you about this tip? </label>
             <input type="checkbox" name="contact" id="contact">
+
             <fieldset>
                 <legend>Preferred Contact Method:</legend>
+
                 <label for="phone">Phone: </label>
                 <input type="radio" name="contact-method" id="phone">
                 <label for="email">Email: </label>
                 <input type="radio" name="contact-method" id="email">
+
             </fieldset>
+
         </fieldset>
+
         <label for="staff">Staff in the office</label>
         <progress id="staff" value="3" max="4">75%</progress>
+
         <button type="submit">Continue</button>
     </form>
+    <script src="../js/datepickr.min.js"></script>
+    <script>
+        new datepickr('incidentDateTime');
+    </script>
 </body>
 </html>

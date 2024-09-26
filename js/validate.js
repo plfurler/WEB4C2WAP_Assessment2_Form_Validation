@@ -242,7 +242,6 @@ function retrieveData() {
   if (cityValue) validateErrors("city", "cityError");
   if (countryValue) {
     document.querySelector("#country").value = countryValue;
-
     changeState();
 
     if (stateValue) {
