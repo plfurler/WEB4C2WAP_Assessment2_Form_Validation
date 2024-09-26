@@ -9,7 +9,7 @@ function validate() {
         element == "[object HTMLSelectElement]") &&
       element.style.backgroundColor != "rgb(204, 255, 204)"
     ) {
-      if (element.type != "color" && element.type != "submit") {
+      if (element.type != "color" && element.type != "submit" && element.id != "colour") {
         alert("Please enter data for any fields that are not green");
         return false;
       }

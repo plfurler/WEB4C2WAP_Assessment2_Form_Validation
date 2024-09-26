@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Form 1</title>
-    <link rel="stylesheet" href="../css/mystyles.css" />
+    <link rel="stylesheet" href="../css/mystyles.css">
     <script src="../js/validate.js"></script>
   </head>
 
@@ -23,8 +23,7 @@
         <legend>Register new user</legend>
 
         <label for="username">Username: </label>
-        <input
-          type="text"
+        <input type="text" 
           id="username"
           name="username"
           placeholder="enter a new username"
@@ -33,7 +32,7 @@
           required
           autofocus
           onblur="return validateErrors('username', 'usernameError')"
-        />
+        >
         <script>
           if (!("autofocus" in document.createElement("input"))) {
             document.getElementById("username").focus();
@@ -51,7 +50,7 @@
           title="at least eight symbols containing at least one number, one lower, and one uppercase letter"
           required
           onblur="return validateErrors('password', 'passwordError')"
-        />
+        >
         <span id="passwordError" style="display: none"></span>
       </fieldset>
 
@@ -67,7 +66,7 @@
           placeholder="First and last name"
           required
           onblur="return validateErrors('name', 'nameError')"
-        />
+        >
         <span id="nameError" style="display: none"></span>
 
         <label for="address">Address: </label>
@@ -81,7 +80,7 @@
           placeholder="street number and name"
           required
           onblur="return validateErrors('address', 'addressError')"
-        />
+        >
         <span id="addressError" style="display: none"></span>
 
         <label for="suburb">Suburb: </label>
@@ -93,7 +92,7 @@
           placeholder="Suburb"
           required
           onblur="return validateErrors('suburb', 'suburbError')"
-        />
+        >
         <span id="suburbError" style="display: none"></span>
 
         <label for="city">City: </label>
@@ -106,7 +105,7 @@
           placeholder="City"
           required
           onblur="return validateErrors('city', 'cityError')"
-        />
+        >
         <span id="cityError" style="display: none"></span>
 
         <label for="country">Country: </label>
@@ -130,7 +129,7 @@
           placeholder="0000"
           required
           onblur="return validatePostcode();"
-        />
+        >
         <span id="postcodeError" style="display: none"></span>
 
         <label for="email">Email: </label>
@@ -143,7 +142,7 @@
           placeholder="me@example.com"
           required
           onblur="return validateErrors('email', 'emailError')"
-        />
+        >
         <span id="emailError" style="display: none"></span>
 
         <label for="phone">Phone: </label>
@@ -158,7 +157,7 @@
           placeholder="(00)-000-0000"
           required
           onblur="return validateErrors('phone', 'phoneError')"
-        />
+        >
         <span id="phoneError" style="display: none"></span>
 
         <label for="website">Website: </label>
@@ -171,7 +170,7 @@
           placeholder="http://www.example.com"
           required
           onblur="return validateErrors('website', 'websiteError')"
-        />
+        >
         <span id="websiteError" style="display: none"></span>
 
         <label for="age">Age: </label>
@@ -184,7 +183,7 @@
           placeholder="00"
           required
           onblur="return validateErrors('age', 'ageError')"
-        />
+        >
         <span id="ageError" style="display: none"></span>
       </fieldset>
 
@@ -193,7 +192,7 @@
 
         <p>
           <label for="colour">What colour is black? (Choose a colour).</label
-          ><input type="color" name="colour" id="colour" value="#ffffff" />
+          ><input name="colour" id="colour" data-jscolor="{value:'ffffff', alpha:true}">
         </p>
       </fieldset>
 
@@ -201,6 +200,7 @@
         <button type="submit" onclick="return validate()">Continue</button>
       </fieldset>
     </form>
+    <script src="../js/jscolor.min.js"></script>
     <script>
       // to keep the variable scope local, I am using a self invoking function
       (function () {
