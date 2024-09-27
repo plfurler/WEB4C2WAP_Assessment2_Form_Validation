@@ -1,4 +1,14 @@
-// Form Validation
+/* 
+Pseudocode: Simplified code-like language used to outline the logic and structure of a program without specific syntax.
+
+Flow Charts: Diagrams that represent the flow of a program or algorithm using shapes and arrows to show steps and decisions.
+
+Internal Comments: Annotations within the code that describe its functionality, helping developers understand logic and purpose.
+*/
+
+/*---------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+                                                      FORM VALIDATION
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------*/
 
 function validate() {
   var elements = document.getElementById("form1").elements;
@@ -41,6 +51,23 @@ function validateErrors(formField, errorField) {
   }
 }
 
+
+/*
+The function validatePostcode() validates the entered postcode against specific patterns based on the selected state.
+It retrieves the 'state' and 'postcode' values from the form, then uses a switch statement to determine the correct 
+regular expression (RegExp) for the state's postcode format. The switch statement is used to efficiently handle multiple 
+state cases by checking each 'state' value (e.g., NSW, VIC) and applying a unique postcode validation rule for each.
+
+For instance, NSW and ACT postcodes should start with a '2', so a RegExp pattern like /^[2][0-9]{3}$/ is assigned. 
+For other states, the first digit of the postcode changes based on the specific state's postal code range. 
+The switch also sets a custom error message based on the state, which informs the user of the correct format if validation fails.
+
+If the postcode does not match the assigned pattern, an error message is displayed, and the input field's background changes 
+to indicate the error. The switch statement is ideal here as it provides a clear and readable way to handle the different 
+state-specific postcode formats, which differ only in the first digit. It is best practice to use a switch statement when testing
+for multiple conditions based on the same value, as it provides clearer and more efficient code compared to using multiple
+if-else statements.
+*/
 function validatePostcode() {
   var state = document.getElementById("state").value;
   var postcode = document.getElementById("postcode").value;
@@ -174,7 +201,16 @@ function stateColours() {
   }
 }
 
-// Local Storage
+/*---------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+                                                        LOCAL STORAGE
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------*/
+
+/*
+Local storage is utilized in this application to persist user input data across browser sessions. The saveData() function is responsible for capturing the values entered by the user in various form fields (e.g., username, name, address) and storing them in the browser's local storage using the localStorage.setItem() method. This function is invoked automatically every 5000 milliseconds (5 seconds) through the setInterval() method, ensuring that data is continually saved as the user interacts with the form.
+
+The retrieveData() function is called when the page loads, as specified in the body tag with the onload attribute (onload="retrieveData()"). This function retrieves the previously saved values from local storage using the localStorage.getItem() method and populates the corresponding input fields with these values. If there are no stored values, it defaults the fields to an empty string. This implementation ensures a seamless user experience, allowing users to resume their input even after a page refresh or subsequent visits, thereby enhancing the usability of the application.
+*/
+
 var myInterval = setInterval(saveData, 5000);
 
 function saveData() {

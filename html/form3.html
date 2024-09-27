@@ -4,13 +4,18 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Form 3</title>
+    <link rel="stylesheet" href="../css/bootstrap.min.css">
     <link rel="stylesheet" href="../css/mystyles.css">
   </head>
   <body>
-    <div>
-      <label for="progress">Progress: </label>
-      <progress id="progress" value="2" max="2"></progress>
-      <p>The form was successfully received. Thank you!</p>
+    <div class="container d-flex flex-column justify-content-center align-items-center min-vh-100 my-5">
+      <div class="mb-3 w-75">
+        <label class="form-label" for="progress">Progress: </label>
+        <progress id="progress" value="2" max="2"></progress>
+      </div>
+      <div class="mb-3 W-75">
+        <p>The form was successfully received. Thank you!</p>
+      </div>
     </div>
   </body>
 </html>
